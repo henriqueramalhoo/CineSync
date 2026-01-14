@@ -1,0 +1,349 @@
+{
+  "perfis": [
+    {
+      "id": "Joel",
+      "nome": "Joel"
+    },
+    {
+      "id": "Travassos",
+      "nome": "Travassos"
+    }
+  ],
+  "favoritos": [
+    {
+      "id": "73d5",
+      "tmdbId": 812037,
+      "perfilId": "Travassos",
+      "adult": false,
+      "backdrop_path": "/wVg8Fndzwq3ts3zedhW3Vn9aC4B.jpg",
+      "belongs_to_collection": null,
+      "budget": 0,
+      "genres": [
+        {
+          "id": 18,
+          "name": "Drama"
+        }
+      ],
+      "homepage": "",
+      "imdb_id": "tt14550346",
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_title": "L'été dernier",
+      "overview": "",
+      "popularity": 10.086,
+      "poster_path": "/8fa2IDcT0UGTArTee5BXZ63b5UM.jpg",
+      "production_companies": [
+        {
+          "id": 8997,
+          "logo_path": "/79j5EijIG8NrRg5ibLtdooXTsiu.png",
+          "name": "SBS Productions",
+          "origin_country": "FR"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "FR",
+          "name": "France"
+        }
+      ],
+      "release_date": "2023-09-13",
+      "revenue": 1022551,
+      "runtime": 104,
+      "spoken_languages": [
+        {
+          "english_name": "French",
+          "iso_639_1": "fr",
+          "name": "Français"
+        }
+      ],
+      "status": "Released",
+      "tagline": "",
+      "title": "Verão Passado",
+      "video": false,
+      "vote_average": 6.1,
+      "vote_count": 234,
+      "media_type": "movie"
+    },
+    {
+      "id": "2431",
+      "tmdbId": 1242011,
+      "perfilId": "Travassos",
+      "adult": false,
+      "backdrop_path": "/fBlzTwgtbDYkDKlhnPu69jHfVGy.jpg",
+      "belongs_to_collection": null,
+      "budget": 17000000,
+      "genres": [
+        {
+          "id": 27,
+          "name": "Terror"
+        },
+        {
+          "id": 10749,
+          "name": "Romance"
+        }
+      ],
+      "homepage": "",
+      "imdb_id": "tt31184028",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_title": "Together",
+      "overview": "Tim e Millie encontram-se numa encruzilhada na sua relação quando se mudam para o campo, abandonando tudo o que lhes é familiar, exceto um ao outro. Com as tensões já exacerbadas, um encontro com uma força misteriosa e sobrenatural ameaça corromper as suas vidas, o seu amor e os seus corpos.",
+      "popularity": 17.7285,
+      "poster_path": "/gFizWARkUj7SMuGkmssxIV9TkgT.jpg",
+      "production_companies": [
+        {
+          "id": 123244,
+          "logo_path": "/7eH1Y4RIuontJJXVmmSRrNUMZhU.png",
+          "name": "Picturestart",
+          "origin_country": "US"
+        },
+        {
+          "id": 168181,
+          "logo_path": "/adHpT0fRW86W80jPtJRo96pqJE4.png",
+          "name": "Tango Entertainment",
+          "origin_country": "US"
+        },
+        {
+          "id": 104363,
+          "logo_path": "/tKIimrvYUH02D4km00lCEDUYvIF.png",
+          "name": "30WEST",
+          "origin_country": "US"
+        },
+        {
+          "id": 17094,
+          "logo_path": "/vzwqInC0VPs2eSLBAWz2GjvPFMf.png",
+          "name": "Princess Pictures",
+          "origin_country": "AU"
+        },
+        {
+          "id": 221878,
+          "logo_path": "/vkDC86CasbGuoidcIpAINSBMUXC.png",
+          "name": "1.21 Entertainment",
+          "origin_country": "US"
+        },
+        {
+          "id": 270104,
+          "logo_path": null,
+          "name": "Project Foxtrot",
+          "origin_country": "US"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "AU",
+          "name": "Australia"
+        },
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "release_date": "2025-07-28",
+      "revenue": 32273159,
+      "runtime": 102,
+      "spoken_languages": [
+        {
+          "english_name": "English",
+          "iso_639_1": "en",
+          "name": "English"
+        }
+      ],
+      "status": "Released",
+      "tagline": "",
+      "title": "Together",
+      "video": false,
+      "vote_average": 7.078,
+      "vote_count": 818,
+      "media_type": "movie"
+    },
+    {
+      "id": "dace",
+      "tmdbId": 61222,
+      "perfilId": "Travassos",
+      "adult": false,
+      "backdrop_path": "/qFYDJUIFh8zgEDy3EvnHwhgOl0S.jpg",
+      "created_by": [
+        {
+          "id": 1169456,
+          "credit_id": "53f7267ac3a3683403005182",
+          "name": "Raphael Bob-Waksberg",
+          "original_name": "Raphael Bob-Waksberg",
+          "gender": 2,
+          "profile_path": "/2ktN8lJhecCKG77nlDm3dISbnxk.jpg"
+        }
+      ],
+      "episode_run_time": [],
+      "first_air_date": "2014-08-22",
+      "genres": [
+        {
+          "id": 16,
+          "name": "Animação"
+        },
+        {
+          "id": 35,
+          "name": "Comédia"
+        },
+        {
+          "id": 18,
+          "name": "Drama"
+        }
+      ],
+      "homepage": "http://www.netflix.com/title/70300800",
+      "in_production": false,
+      "languages": [
+        "en"
+      ],
+      "last_air_date": "2020-01-31",
+      "last_episode_to_air": {
+        "id": 2066578,
+        "name": "Bom enquanto durou",
+        "overview": "Uma ocasião especial volta a juntar todos.",
+        "vote_average": 9.033,
+        "vote_count": 30,
+        "air_date": "2020-01-31",
+        "episode_number": 16,
+        "episode_type": "finale",
+        "production_code": "",
+        "runtime": 27,
+        "season_number": 6,
+        "show_id": 61222,
+        "still_path": "/zsTqgT4KJoX4rcvH8QN66Ln7qIs.jpg"
+      },
+      "name": "BoJack Horseman",
+      "next_episode_to_air": null,
+      "networks": [
+        {
+          "id": 213,
+          "logo_path": "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+          "name": "Netflix",
+          "origin_country": ""
+        }
+      ],
+      "number_of_episodes": 76,
+      "number_of_seasons": 6,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "BoJack Horseman",
+      "overview": "BoJack é um decadente cavalo que trabalha na TV. Uma estrela já esquecida de uma série da década de 1990 chamada Horsin' Around, ele disfarça a sua baixa auto-estima com uísque e relações fracassadas. Com a ajuda de Todd, o seu parceiro humano, e da ex-amante Princesa Caroline , ele quer deixar novamente a sua marca no mundo do entretenimento.",
+      "popularity": 37.3493,
+      "poster_path": "/6JFWzlChcGgLiIUo2COgNlWGFKy.jpg",
+      "production_companies": [
+        {
+          "id": 30740,
+          "logo_path": "/9iAR1jn9cMH1MDtt2bhykRL0tFA.png",
+          "name": "The Tornante Company",
+          "origin_country": "US"
+        },
+        {
+          "id": 81667,
+          "logo_path": "/Am06MBFNH0OLe3m5MEhdyIFeYWh.png",
+          "name": "ShadowMachine",
+          "origin_country": "US"
+        },
+        {
+          "id": 123120,
+          "logo_path": null,
+          "name": "Boxer vs. Raptor",
+          "origin_country": "US"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "seasons": [
+        {
+          "air_date": "2014-12-19",
+          "episode_count": 6,
+          "id": 63867,
+          "name": "Especiais",
+          "overview": "",
+          "poster_path": "/cSZhJq34VAwsuCaOfZffqFO3CPh.jpg",
+          "season_number": 0,
+          "vote_average": 0
+        },
+        {
+          "air_date": "2014-08-22",
+          "episode_count": 12,
+          "id": 62359,
+          "name": "Temporada 1",
+          "overview": "Outrora a estrela da sitcom de êxito \"Horsin' Around\", BoJack é hoje uma relíquia do passado que passa os dias em Hollywood a queixar-se e a usar camisolas coloridas.",
+          "poster_path": "/4DyiQNKHcumvAjXdSB96DmhCfF5.jpg",
+          "season_number": 1,
+          "vote_average": 7.5
+        },
+        {
+          "air_date": "2015-07-17",
+          "episode_count": 12,
+          "id": 66995,
+          "name": "Temporada 2",
+          "overview": "Depois de as suas memórias serem um bestseller e de conseguir o papel dos seus sonhos, BoJack está pronto para relançar a sua vida e carreira. A menos que estrague tudo.",
+          "poster_path": "/AsXGAf6mLdsKtSwh6c3XiC3fMn9.jpg",
+          "season_number": 2,
+          "vote_average": 8.1
+        },
+        {
+          "air_date": "2016-07-22",
+          "episode_count": 12,
+          "id": 78422,
+          "name": "Temporada 3",
+          "overview": "\"Secretariat\" é um enorme êxito e BoJack começa finalmente a colher os frutos da fama. Mas na sua vida pessoal, as desventuras continuam a segui-lo.",
+          "poster_path": "/eTvcHZ0lwGWZ2kRRzy3iZ7vbaG.jpg",
+          "season_number": 3,
+          "vote_average": 8.1
+        },
+        {
+          "air_date": "2017-09-08",
+          "episode_count": 12,
+          "id": 92423,
+          "name": "Temporada 4",
+          "overview": "BoJack tem problemas de autoestima e perda, Todd ajuda Mr. Peanutbutter a concorrer para governador da Califórnia e Diane arranja emprego num blogue que está na berra.",
+          "poster_path": "/zxaR97i8eiozOSCOUbR58uhW9K1.jpg",
+          "season_number": 4,
+          "vote_average": 8.2
+        },
+        {
+          "air_date": "2018-09-14",
+          "episode_count": 12,
+          "id": 106026,
+          "name": "Temporada 5",
+          "overview": "BoJack regressa ao ecrã como a estrela de \"Philbert\", uma nova série de detetives produzida pela Princesa Carolyn. Mas os demónios que o atormentam fazem-se sentir.",
+          "poster_path": "/t3r6TaOTIMxcNMb9O6gofQrHJr9.jpg",
+          "season_number": 5,
+          "vote_average": 8.4
+        },
+        {
+          "air_date": "2019-10-25",
+          "episode_count": 16,
+          "id": 133186,
+          "name": "Temporada 6",
+          "overview": "BoJack dá início a um longo caminho para a redenção quando uma passagem por uma clínica de reabilitação o obriga a enfrentar e a corrigir os seus erros.",
+          "poster_path": "/4oTJG12DslkXfzKkBLZzVcYejcN.jpg",
+          "season_number": 6,
+          "vote_average": 8.5
+        }
+      ],
+      "spoken_languages": [
+        {
+          "english_name": "English",
+          "iso_639_1": "en",
+          "name": "English"
+        }
+      ],
+      "status": "Ended",
+      "tagline": "",
+      "type": "Scripted",
+      "vote_average": 8.5,
+      "vote_count": 2719,
+      "media_type": "tv"
+    }
+  ]
+}

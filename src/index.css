@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .filtro-select {
+    @apply bg-slate-200 dark:bg-navy-700 border border-slate-300 dark:border-navy-600 rounded-lg p-2 text-slate-800 dark:text-white focus:ring-accent-500 focus:border-accent-500;
+  }
+}

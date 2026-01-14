@@ -1,0 +1,13 @@
+I have applied the debugging logs to `DetalhesFilme.jsx` and `DetalhesSerie.jsx`.
+
+Please, could you do the following:
+
+1.  Open your browser to the application (e.g., `http://localhost:5173/`).
+2.  Open the developer tools (usually by pressing **F12**).
+3.  Go to the **"Console"** tab.
+4.  Navigate to either the **Filmes** page (`/filmes`) or the **Séries** page (`/series`).
+5.  Click on any movie or series.
+6.  Observe the page. Do you see the details of the movie/series (poster, title, description)? Do you see the red-bordered box where the video player should be? Do you see the "Elenco Principal" and "Galeria" sections?
+7.  **Copy all messages** that appear in the "Console" tab and paste them here. Pay special attention to any messages starting with `[DEBUG DetalhesFilme]` or `[DEBUG DetalhesSerie]`.
+
+This detailed console output will be crucial for me to understand exactly what data is being fetched and processed, and why the content is not appearing as expected.
