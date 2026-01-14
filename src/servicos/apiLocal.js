@@ -1,4 +1,4 @@
-const API_LOCAL_URL = 'http://localhost:3001';
+const API_LOCAL_URL = 'https://cinesync-api-2dpa.onrender.com';
 
 // A função genérica fetchLocalApi permanece a mesma.
 const fetchLocalApi = async (endpoint, method = 'GET', data = null) => {
