@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useContext, useCallback } from 'rea
 const PerfilContexto = createContext();
 
 // A URL da nossa API local
-const API_LOCAL_URL = 'http://localhost:3001';
+const API_LOCAL_URL = 'https://cinesync-api-2dpa.onrender.com';
 
 export function PerfilProvider({ children }) {
   const [perfis, setPerfis] = useState([]);
