@@ -124,3 +124,60 @@ export const verificarSeVisto = async (tmdbId, perfilId) => {
   const resultados = await fetchLocalApi(`/historico?tmdbId=${tmdbId}&perfilId=${perfilId}`);
   return resultados.length > 0 ? resultados[0] : null;
 };
+
+/**
+ * Atualiza o estado de um episódio (visto/não visto) no histórico de uma série.
+ * @param {string} perfilId
+ * @param {Object} serie
+ * @param {number} temporadaNum
+ * @param {number} episodioNum
+ * @param {boolean} marcarComoVisto - true para marcar, false para desmarcar
+ * @returns {Promise<Object>} - O registo do histórico atualizado.
+ */
+export const atualizarEpisodioVisto = async (perfilId, serie, temporadaNum, episodioNum, marcarComoVisto) => {
+  const registroExistente = await verificarSeVisto(serie.id, perfilId);
+
+  if (marcarComoVisto) {
+    if (registroExistente) {
+      // Atualiza um registro existente
+      const temporadasVistas = registroExistente.temporadasVistas || {};
+      const episodiosVistos = temporadasVistas[temporadaNum] || [];
+      if (!episodiosVistos.includes(episodioNum)) {
+        episodiosVistos.push(episodioNum);
+      }
+      temporadasVistas[temporadaNum] = episodiosVistos.sort((a, b) => a - b);
+      const registroAtualizado = { ...registroExistente, temporadasVistas };
+      return fetchLocalApi(`/historico/${registroExistente.id}`, 'PUT', registroAtualizado);
+    } else {
+      // Cria um novo registro
+      const { id, ...rest } = serie;
+      const novoRegistro = {
+        tmdbId: id,
+        perfilId: perfilId,
+        media_type: 'tv',
+        temporadasVistas: {
+          [temporadaNum]: [episodioNum]
+        },
+        ...rest
+      };
+      return fetchLocalApi('/historico', 'POST', novoRegistro);
+    }
+  } else {
+    // Desmarcar como visto
+    if (!registroExistente) return null; // Não há nada a fazer
+
+    const temporadasVistas = registroExistente.temporadasVistas || {};
+    const episodiosVistos = temporadasVistas[temporadaNum] || [];
+    
+    const novosEpisodiosVistos = episodiosVistos.filter(ep => ep !== episodioNum);
+
+    if (novosEpisodiosVistos.length > 0) {
+      temporadasVistas[temporadaNum] = novosEpisodiosVistos;
+    } else {
+      delete temporadasVistas[temporadaNum]; // Remove a temporada se não houver mais episódios
+    }
+
+    const registroAtualizado = { ...registroExistente, temporadasVistas };
+    return fetchLocalApi(`/historico/${registroExistente.id}`, 'PUT', registroAtualizado);
+  }
+};

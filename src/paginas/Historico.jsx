@@ -2,7 +2,46 @@ import { useState, useEffect, useCallback } from 'react';
 import { obterHistorico, removerDoHistorico } from '../servicos/apiLocal';
 import { usePerfil } from '../contextos/PerfilContexto';
 import GrelhaItens from '../componentes/GrelhaItens';
+import ItemCarrossel from '../componentes/ItemCarrossel';
 import Spinner from '../componentes/Spinner';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+// Componente para um item de série na grelha de histórico
+function SerieVistaCard({ item, onRemover }) {
+  const calcularTotalEpisodiosVistos = (temporadasVistas) => {
+    if (!temporadasVistas) return 0;
+    return Object.values(temporadasVistas).reduce((total, episodios) => total + episodios.length, 0);
+  };
+
+  const totalVistos = calcularTotalEpisodiosVistos(item.temporadasVistas);
+
+  return (
+    <div>
+      <ItemCarrossel item={item} tipo="tv" onRemover={onRemover} />
+      <p className="text-center text-sm mt-2 text-slate-600 dark:text-slate-400">
+        {totalVistos} {totalVistos === 1 ? 'episódio visto' : 'episódios vistos'}
+      </p>
+    </div>
+  );
+}
 
 function Historico() {
   const { perfilAtual } = usePerfil();
@@ -83,7 +122,18 @@ function Historico() {
               Séries Vistas por {perfilAtual}
             </h1>
             {seriesVistas.length > 0 ? (
-              <GrelhaItens itens={seriesVistas} tipo="tv" onRemover={handleRemoverDoHistorico} />
+              <motion.div
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {seriesVistas.map(item => (
+                  <motion.div key={item.id} variants={itemVariants}>
+                    <SerieVistaCard item={item} onRemover={() => handleRemoverDoHistorico(item.id)} />
+                  </motion.div>
+                ))}
+              </motion.div>
             ) : (
               <p className="text-slate-500 dark:text-slate-400">Nenhuma série marcada como vista para este perfil.</p>
             )}
@@ -95,3 +145,4 @@ function Historico() {
 }
 
 export default Historico;
+
