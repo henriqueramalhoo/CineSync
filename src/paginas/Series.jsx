@@ -30,7 +30,20 @@ function ConteudoPaginaSeries() {
 
   useEffect(() => {
     const carregarDadosFiltros = async () => {
-      // ... (código para carregar filtros não muda)
+      try {
+        const [generosData, paisesData, linguasData] = await Promise.all([
+          obterGenerosSeries(),
+          obterPaises(),
+          obterLinguas()
+        ]);
+        setListasFiltros({
+          genres: generosData.genres || [],
+          countries: paisesData.sort((a, b) => a.native_name.localeCompare(b.native_name)) || [],
+          languages: linguasData.sort((a, b) => a.english_name.localeCompare(b.english_name)) || []
+        });
+      } catch (error) {
+        console.error("Erro ao carregar dados para os filtros:", error);
+      }
     };
     carregarDadosFiltros();
   }, []);
@@ -52,7 +65,7 @@ function ConteudoPaginaSeries() {
       
       const dados = await descobrirSeries(params);
       setResultadosDescoberta(dados.results);
-      setTotalPaginas(dados.total_pages);
+      setTotalPaginas(dados.total_pages > 500 ? 500 : dados.total_pages);
       setCarregando(false);
     };
 
