@@ -72,3 +72,55 @@ export const verificarSeFavorito = async (tmdbId, perfilId) => {
   // A API retorna um array, pegamos o primeiro resultado se existir
   return resultados.length > 0 ? resultados[0] : null;
 };
+
+// ===============================================
+// Funções para Histórico de Visualização
+// ===============================================
+
+/**
+ * Obtém o histórico de visualização para um perfil específico.
+ * @param {string} perfilId - O ID do perfil.
+ * @returns {Promise<Array>} - Um array de itens no histórico.
+ */
+export const obterHistorico = (perfilId) => {
+  if (!perfilId) return Promise.resolve([]);
+  return fetchLocalApi(`/historico?perfilId=${perfilId}`);
+};
+
+/**
+ * Adiciona um item ao histórico de um perfil.
+ * @param {Object} item - O objeto do filme ou série a ser adicionado.
+ * @param {string} perfilId - O ID do perfil.
+ * @returns {Promise<Object>} - O item de histórico adicionado.
+ */
+export const adicionarAoHistorico = (item, perfilId) => {
+  const { id, ...rest } = item;
+  const novoItemHistorico = {
+    tmdbId: id,
+    perfilId: perfilId,
+    vistoEm: new Date().toISOString(),
+    ...rest
+  };
+  return fetchLocalApi('/historico', 'POST', novoItemHistorico);
+};
+
+/**
+ * Remove um item do histórico.
+ * @param {string} historicoId - O ID único do item na lista de histórico.
+ * @returns {Promise<Object>} - Objeto vazio em caso de sucesso.
+ */
+export const removerDoHistorico = (historicoId) => {
+  return fetchLocalApi(`/historico/${historicoId}`, 'DELETE');
+};
+
+/**
+ * Verifica se um item já está no histórico de um perfil.
+ * @param {number} tmdbId - O ID do filme ou série na TMDB.
+ * @param {string} perfilId - O ID do perfil.
+ * @returns {Promise<Object|null>} - O objeto do histórico se encontrado, senão null.
+ */
+export const verificarSeVisto = async (tmdbId, perfilId) => {
+  if (!perfilId) return null;
+  const resultados = await fetchLocalApi(`/historico?tmdbId=${tmdbId}&perfilId=${perfilId}`);
+  return resultados.length > 0 ? resultados[0] : null;
+};

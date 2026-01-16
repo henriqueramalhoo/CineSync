@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { buscarDetalhesFilme, obterCreditosFilme, obterImagensFilme } from '../servicos/apiFilmes';
-import { adicionarFavorito, removerFavorito, verificarSeFavorito } from '../servicos/apiLocal';
+import { 
+  adicionarFavorito, 
+  removerFavorito, 
+  verificarSeFavorito,
+  adicionarAoHistorico,
+  removerDoHistorico,
+  verificarSeVisto
+} from '../servicos/apiLocal';
 import { usePerfil } from '../contextos/PerfilContexto';
 import Spinner from '../componentes/Spinner';
 import Elenco from '../componentes/Elenco';
@@ -27,87 +34,58 @@ function DetalhesFilme() {
   const [erro, setErro] = useState(null);
   const [servidorSelecionado, setServidorSelecionado] = useState(SERVIDORES[0].template);
   const [urlPlayer, setUrlPlayer] = useState('');
+  
   const [favoritoId, setFavoritoId] = useState(null);
   const [carregandoFavorito, setCarregandoFavorito] = useState(false);
 
+  const [historicoId, setHistoricoId] = useState(null);
+  const [carregandoHistorico, setCarregandoHistorico] = useState(false);
+
     useEffect(() => {
-
       const carregarTudo = async () => {
-
         const filmeId = parseInt(id, 10);
-
         if (isNaN(filmeId)) {
-
           setErro(`O ID do filme "${id}" não é válido.`);
-
           setCarregando(false);
-
           return;
-
         }
 
         try {
-
           setCarregando(true);
-
           setErro(null);
 
-          console.log(`[DEBUG DetalhesFilme] A buscar detalhes para o filme ID: ${filmeId}`);
-
-          const [dadosFilme, dadosCreditos, dadosImagens, favoritoExistente] = await Promise.all([
-
+          const [
+            dadosFilme, 
+            dadosCreditos, 
+            dadosImagens, 
+            favoritoExistente,
+            historicoExistente
+          ] = await Promise.all([
               buscarDetalhesFilme(filmeId),
-
               obterCreditosFilme(filmeId),
-
               obterImagensFilme(filmeId),
-
-              perfilAtual ? verificarSeFavorito(filmeId, perfilAtual) : Promise.resolve(null)
-
+              perfilAtual ? verificarSeFavorito(filmeId, perfilAtual) : null,
+              perfilAtual ? verificarSeVisto(filmeId, perfilAtual) : null
           ]);
-
   
-
-          console.log('[DEBUG DetalhesFilme] Dados do filme recebidos:', dadosFilme);
-
-          console.log('[DEBUG DetalhesFilme] Créditos recebidos:', dadosCreditos);
-
-          console.log('[DEBUG DetalhesFilme] Imagens recebidas:', dadosImagens);
-
-          console.log('[DEBUG DetalhesFilme] Resultado da verificação de favorito:', favoritoExistente);
-
-  
-
           if (!dadosFilme || !dadosFilme.id) throw new Error('Dados do filme incompletos.');
-
           
-
           setFilme(dadosFilme);
-
           setCreditos(dadosCreditos);
-
           setImagens(dadosImagens);
-
           setFavoritoId(favoritoExistente ? favoritoExistente.id : null);
+          setHistoricoId(historicoExistente ? historicoExistente.id : null);
 
         } catch (e) {
-
           console.error(`[DEBUG DetalhesFilme] Erro ao carregar dados: ${e.message}`, e);
-
           setErro(`Lamentamos, ocorreu um erro: ${e.message}`);
-
         } finally {
-
           setCarregando(false);
-
         }
-
       };
 
-      window.scrollTo(0, 0); // Rola para o topo ao carregar
-
+      window.scrollTo(0, 0);
       carregarTudo();
-
     }, [id, perfilAtual]);
 
   useEffect(() => {
@@ -124,17 +102,34 @@ function DetalhesFilme() {
       if (favoritoId) {
         await removerFavorito(favoritoId);
         setFavoritoId(null);
-        alert('Filme removido dos favoritos!');
       } else {
         const itemParaAdicionar = { ...filme, media_type: 'movie' };
         const novoFavorito = await adicionarFavorito(itemParaAdicionar, perfilAtual);
         setFavoritoId(novoFavorito.id);
-        alert('Filme adicionado aos favoritos!');
       }
     } catch (e) {
       alert(`Ocorreu um erro na operação de favoritos.`);
     } finally {
       setCarregandoFavorito(false);
+    }
+  };
+
+  const lidarComToggleVisto = async () => {
+    if (!filme || !perfilAtual) return;
+    setCarregandoHistorico(true);
+    try {
+      if (historicoId) {
+        await removerDoHistorico(historicoId);
+        setHistoricoId(null);
+      } else {
+        const itemParaAdicionar = { ...filme, media_type: 'movie' };
+        const novoHistorico = await adicionarAoHistorico(itemParaAdicionar, perfilAtual);
+        setHistoricoId(novoHistorico.id);
+      }
+    } catch (e) {
+      alert(`Ocorreu um erro na operação de histórico.`);
+    } finally {
+      setCarregandoHistorico(false);
     }
   };
 
@@ -144,6 +139,7 @@ function DetalhesFilme() {
   
   const posterUrl = filme.poster_path ? `${IMAGEM_BASE_URL}${filme.poster_path}` : 'https://via.placeholder.com/780x1170?text=Sem+Imagem';
   const eFavorito = !!favoritoId;
+  const foiVisto = !!historicoId;
 
   return (
     <div className="container mx-auto p-4 pt-24">
@@ -163,16 +159,30 @@ function DetalhesFilme() {
             <div className="mt-2">
               <span className="font-bold text-slate-600 dark:text-slate-100">Avaliação Média:</span> {filme.vote_average.toFixed(1)} / 10
             </div>
-            <button
-              onClick={lidarComToggleFavorito}
-              disabled={carregandoFavorito || !perfilAtual}
-              className={`mt-6 px-6 py-3 rounded-lg text-white font-bold transition-colors duration-300 ${
-                eFavorito ? 'bg-red-600 hover:bg-red-700' : 'bg-accent-500 hover:bg-accent-600'
-              } disabled:opacity-50 disabled:cursor-not-allowed`}
-              title={!perfilAtual ? 'Selecione um perfil para adicionar aos favoritos' : ''}
-            >
-              {carregandoFavorito ? 'A processar...' : (eFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos')}
-            </button>
+            <div className="flex gap-4">
+              <button
+                onClick={lidarComToggleFavorito}
+                disabled={carregandoFavorito || !perfilAtual}
+                className={`mt-6 px-6 py-3 rounded-lg text-white font-bold transition-colors duration-300 ${
+                  eFavorito ? 'bg-red-600 hover:bg-red-700' : 'bg-accent-500 hover:bg-accent-600'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+                title={!perfilAtual ? 'Selecione um perfil para adicionar aos favoritos' : ''}
+              >
+                {carregandoFavorito ? 'A processar...' : (eFavorito ? 'Remover Favorito' : 'Adicionar Favorito')}
+              </button>
+              <button
+                onClick={lidarComToggleVisto}
+                disabled={carregandoHistorico || !perfilAtual}
+                className={`mt-6 px-6 py-3 rounded-lg font-bold transition-colors duration-300 ${
+                  foiVisto 
+                    ? 'bg-green-600 text-white hover:bg-green-700' 
+                    : 'bg-slate-300 dark:bg-navy-700 text-slate-800 dark:text-slate-200 hover:bg-slate-400 dark:hover:bg-navy-600'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+                title={!perfilAtual ? 'Selecione um perfil para gerir o histórico' : ''}
+              >
+                {carregandoHistorico ? 'A processar...' : (foiVisto ? 'Visto' : 'Marcar como Visto')}
+              </button>
+            </div>
           </div>
         </div>
         <div className="p-6 border-t border-slate-200 dark:border-navy-700">

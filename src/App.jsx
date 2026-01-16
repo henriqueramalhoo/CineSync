@@ -6,7 +6,8 @@ import DetalhesFilme from './paginas/DetalhesFilme';
 import DetalhesSerie from './paginas/DetalhesSerie';
 import MeusFavoritos from './paginas/MeusFavoritos';
 import Dashboard from './paginas/Dashboard';
-import CanaisTV from './paginas/CanaisTV'; // Importar o novo componente CanaisTV
+import CanaisTV from './paginas/CanaisTV';
+import Historico from './paginas/Historico';
 import Menu from './componentes/Menu';
 
 function App() {
@@ -40,7 +41,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/filme/:id" element={<DetalhesFilme />} />
           <Route path="/serie/:id" element={<DetalhesSerie />} />
-          <Route path="/canais" element={<CanaisTV />} /> {/* Nova rota para CanaisTV */}
+          <Route path="/canais" element={<CanaisTV />} />
+          <Route path="/historico" element={<Historico />} />
         </Routes>
       </main>
 
