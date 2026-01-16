@@ -14,7 +14,7 @@ function CanaisTV() {
   const [canalAtivo, setCanalAtivo] = useState(canais[0]);
 
   return (
-    <div className="container mx-auto p-4 pt-24">
+    <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-8">
         Televisão em Direto
       </h1>

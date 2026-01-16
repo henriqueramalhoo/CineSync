@@ -60,10 +60,10 @@ function Dashboard() {
     calcularEstatisticas();
   }, [calcularEstatisticas]);
 
-  if (carregando) return <div className="pt-24"><Spinner /></div>;
+  if (carregando) return <div className="pt-0"><Spinner /></div>;
   if (!perfilAtual) {
     return (
-      <div className="container mx-auto p-4 pt-24 text-center">
+      <div className="container mx-auto p-4 pt-0 text-center">
         <p className="text-slate-500 dark:text-slate-400">Selecione um perfil no menu para ver o dashboard.</p>
       </div>
     );
@@ -72,7 +72,7 @@ function Dashboard() {
   const maxContagem = stats.generos.length > 0 ? stats.generos[0].contagem : 0;
 
   return (
-    <div className="container mx-auto p-4 pt-24">
+    <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-8">
         Dashboard de {perfilAtual}
       </h1>

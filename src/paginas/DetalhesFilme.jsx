@@ -133,8 +133,8 @@ function DetalhesFilme() {
     }
   };
 
-  if (carregando) return <div className="pt-24"><Spinner /></div>;
-  if (erro) return <p className="text-center text-xl text-red-500 pt-24">{erro}</p>;
+  if (carregando) return <div className="pt-0"><Spinner /></div>;
+  if (erro) return <p className="text-center text-xl text-red-500 pt-0">{erro}</p>;
   if (!filme) return null;
   
   const posterUrl = filme.poster_path ? `${IMAGEM_BASE_URL}${filme.poster_path}` : 'https://via.placeholder.com/780x1170?text=Sem+Imagem';
@@ -142,7 +142,7 @@ function DetalhesFilme() {
   const foiVisto = !!historicoId;
 
   return (
-    <div className="container mx-auto p-4 pt-24">
+    <div className="container mx-auto p-4">
       <Link to="/filmes" className="text-accent-600 dark:text-accent-400 hover:underline transition-colors duration-300 mb-4 inline-block">&larr; Voltar à lista</Link>
       <div className="bg-white dark:bg-navy-800 rounded-lg shadow-xl overflow-hidden mb-8">
         <div className="md:flex">

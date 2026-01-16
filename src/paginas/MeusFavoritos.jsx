@@ -62,7 +62,7 @@ function MeusFavoritos() {
   }
 
   return (
-    <div className="container mx-auto p-4 pt-24">
+    <div className="container mx-auto p-4">
       {erro && (
         <p className="text-center text-xl text-red-500 dark:text-red-400">{erro}</p>
       )}
