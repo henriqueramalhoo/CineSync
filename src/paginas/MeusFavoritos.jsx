@@ -50,12 +50,12 @@ function MeusFavoritos() {
   };
 
   if (carregando) {
-    return <div className="pt-24"><Spinner /></div>;
+    return <div className="pt-0"><Spinner /></div>;
   }
 
   if (!perfilAtual) {
     return (
-      <div className="container mx-auto p-4 pt-24 text-center">
+      <div className="container mx-auto p-4 pt-0 text-center">
         <p className="text-slate-500 dark:text-slate-400">Por favor, selecione um perfil no menu para ver os seus favoritos.</p>
       </div>
     );
